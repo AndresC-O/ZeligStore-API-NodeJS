@@ -1,14 +1,20 @@
 import mongoose from 'mongoose';
 import getModelName from 'Utils/getModelName';
+import { pluralName as tradermarketModelName } from '../tradermark/tradermark.model';
 
 const { Schema } = mongoose;
-export const { singularName, pluralName } = getModelName('categories');
+export const { singularName, pluralName } = getModelName('models');
 
 const schema = new Schema(
   {
-    categorieName: {
+    modelName: {
       type: String,
       required: true,
+    },
+    tradermark:{
+      type: Schema.Types.ObjectId,
+      ref: tradermarketModelName,
+      require: true
     },
     status: {
       type: String,
@@ -37,4 +43,4 @@ schema.set('toJSON', {
 
 // rename name Example to singular Model
 export default mongoose.models[singularName] ||
-  mongoose.model(pluralName, schema);
+mongoose.model(pluralName, schema);

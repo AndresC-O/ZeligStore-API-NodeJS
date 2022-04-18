@@ -2,11 +2,11 @@ import mongoose from 'mongoose';
 import getModelName from 'Utils/getModelName';
 
 const { Schema } = mongoose;
-export const { singularName, pluralName } = getModelName('categories');
+export const { singularName, pluralName } = getModelName('designs');
 
 const schema = new Schema(
   {
-    categorieName: {
+    designName: {
       type: String,
       required: true,
     },
